@@ -1,8 +1,8 @@
 bl_info = {
-    "name": "Yafaray Lights Selector",
+    "name": "Bounty Lights Selector",
     "author": "TynkaTopi",
     "version": (1, 0),
-    "blender": (2, 67, 0),
+    "blender": (2, 72, 0),
     "location": "Properties > Object",
     "description": "",
     "warning": "",
@@ -68,8 +68,8 @@ def Search_Lights():
         scene = bpy.context.scene
         if (obj.type == 'MESH'):
 
-            #MESHLIGHTS
-            if (obj.ml_enable is True):
+            #MESH LIGHTS
+            if (obj.bounty.geometry_type == 'mesh_light'):
                 scene.YafaMeshL = scene.YafaMeshL + 1
                 #print ('Meshlight:', obj.name)
                 if scene.bYafaMeshL is True:
@@ -78,8 +78,8 @@ def Search_Lights():
                     obj.hide_render = True
                 else:
                     obj.hide_render = False
-            #BG MESHLIGHTS
-            if (obj.bgp_enable is True):
+            #PORTAL LIGHTS
+            if (obj.bounty.geometry_type == 'portal_light'):
                 scene.YafaBGPortalL = scene.YafaBGPortalL + 1
                 #print ('BG portal light:', obj.name)
                 if scene.bYafaBGPortalL is True:
@@ -97,7 +97,7 @@ class YafarayLightsPanel(bpy.types.Panel):
 
     """Creates a Panel in the Object properties window"""
 
-    bl_label = "YafaRay Lights Selector"
+    bl_label = "Bounty Lights Selector"
     bl_idname = "OBJECT_PT_hallo"
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
